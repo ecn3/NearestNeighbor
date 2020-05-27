@@ -23,14 +23,15 @@ print("testing_class_lables_array",testing_class_lables_array)
 '''
 
 # Algorithm for computing distance of 2 pairs
-def compute_distance(x):
+def compute_distance(x,y):
     # compute distance = (((slx-sly)**2)+((swx-swy)**2)+((plx-ply)**2)+((pwx-pwy)**2))**0.5  for the specified position in the arrays
-    distance = (((training_attribute_array[x,0]-testing_attribute_array[x,0])**2)+
-((training_attribute_array[x,1]-testing_attribute_array[x,1])**2)+
-((training_attribute_array[x,2]-testing_attribute_array[x,2])**2)+
-((training_attribute_array[x,3]-testing_attribute_array[x,3])**2))**0.5
+    distance = (((training_attribute_array[x,0]-testing_attribute_array[y,0])**2)+
+((training_attribute_array[x,1]-testing_attribute_array[y,1])**2)+
+((training_attribute_array[x,2]-testing_attribute_array[y,2])**2)+
+((training_attribute_array[x,3]-testing_attribute_array[y,3])**2))**0.5
     # Tester code to be deleted
     print(distance)
+    return distance
 
 
 # Print Results to Screen
@@ -39,5 +40,20 @@ print("Christian Nelson")
 print("PROGRAMMING ASSIGNMENT #3\n")
 
 # Tester code to be deleted
-compute_distance(0)
+#compute_distance(0)
+
+closest_dist = 100
+position = 100
+
+for i in range(0, 75):
+    distance = compute_distance(i,69)
+    if distance < closest_dist:
+        closest_dist = distance
+        position = i
+
+print("closest_dist: ",closest_dist, " position: ",position)
+
+
+
+
 
