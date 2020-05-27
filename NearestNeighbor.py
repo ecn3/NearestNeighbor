@@ -23,22 +23,21 @@ print("testing_class_lables_array",testing_class_lables_array)
 '''
 
 # Algorithm for computing distance of 2 pairs
-def compute_distance(slx,swx,plx,pwx,sly,swy,ply,pwy):
-    distance = (((slx-sly)**2)+((swx-swy)**2)+((plx-ply)**2)+((pwx-pwy)**2))**0.5 
+def compute_distance(x):
+    # compute distance = (((slx-sly)**2)+((swx-swy)**2)+((plx-ply)**2)+((pwx-pwy)**2))**0.5  for the specified position in the arrays
+    distance = (((training_attribute_array[x,0]-testing_attribute_array[x,0])**2)+
+((training_attribute_array[x,1]-testing_attribute_array[x,1])**2)+
+((training_attribute_array[x,2]-testing_attribute_array[x,2])**2)+
+((training_attribute_array[x,3]-testing_attribute_array[x,3])**2))**0.5
     # Tester code to be deleted
-    #print(distance)
+    print(distance)
+
 
 # Print Results to Screen
 print("DATA-51100-002, SUMMER 2020")
 print("Christian Nelson")
 print("PROGRAMMING ASSIGNMENT #3\n")
 
-
-'''
 # Tester code to be deleted
-compute_distance(training_attribute_array[0,0],training_attribute_array[0,1],training_attribute_array[0,2],
-training_attribute_array[0,3],testing_attribute_array[0,0],testing_attribute_array[0,1],
-testing_attribute_array[0,2],testing_attribute_array[0,3]
-)
+compute_distance(0)
 
-'''
