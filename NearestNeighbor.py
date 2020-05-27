@@ -1,0 +1,5 @@
+# Christian Nelson
+# 5/27/2020
+# DATA-51100-002, SUMMER 2020
+# PROGRAMMING ASSIGNMENT #3 Nearest Neighbor
+

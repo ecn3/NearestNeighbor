@@ -1,0 +1,23 @@
+load in training.csv into
+-> 2d_ndarray_training_attributes
+-> 1d_ndarray_training_class_lables
+
+load in testing.csv into
+-> 2d_ndarray_testing_attributes
+-> 1d_ndarray_testing_class_lables
+
+Set all 1d_ndarray_testing_class_lables
+
+print(true_class_label, predicted_class_label)
+
+1d_ndarray_class_lables(true_class_label, predicted_class_label)
+
+def compute_distance(training_ex, testing_ex)
+	find closest distance use VC
+
+def compute_accuracy(1d_ndarray_training_class_lables,1d_ndarray_testing_class_lables)
+	accuracy = matching_pairs/total_labels
+	print(accuracy as %)
+
+
+	
