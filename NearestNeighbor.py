@@ -11,8 +11,8 @@ fm1 = "Accuracy: {x:.2f}%"
 fm2 = "{},{},{}"
 
 # Initialize variables
-correct = 0
-arr_positions = np.arange(75)
+correct = 0 
+arr_positions = np.arange(75) # This array saves us the time of using loops in our functions by making a count equal to our total number of data sets
 
 # Load in iris-training-data.csv into 2 ndarrays we use usecols, and dtype to sepertate the correct data into sepertate arrays of one type
 training_attribute_array = np.loadtxt('iris-training-data.csv', dtype=float, delimiter=',',usecols=(0,1,2,3))
@@ -22,21 +22,19 @@ training_class_lables_array = np.loadtxt('iris-training-data.csv', dtype=str, de
 testing_attribute_array = np.loadtxt('iris-testing-data.csv', dtype=float, delimiter=',',usecols=(0,1,2,3))
 testing_class_lables_array = np.loadtxt('iris-testing-data.csv', dtype=str, delimiter=',',usecols=(4))
 
-# Algorithm for computing distance of 2 pairs
+# Function for computing distance of 2 pairs
 def compute_distance(x,y):
     # compute distance = (((slx-sly)**2)+((swx-swy)**2)+((plx-ply)**2)+((pwx-pwy)**2))**0.5  for the specified position in the arrays
     distance = (((training_attribute_array[x,0]-testing_attribute_array[y,0])**2)+
 ((training_attribute_array[x,1]-testing_attribute_array[y,1])**2)+
 ((training_attribute_array[x,2]-testing_attribute_array[y,2])**2)+
 ((training_attribute_array[x,3]-testing_attribute_array[y,3])**2))**0.5
-    #Tester code to delete
-    #print(x,distance)
     return distance
 
 # Function for finding the closest distance
 def get_closest_distances(x):
     closest_distance = np.argmin(distances(arr_positions,x))
-    # Assign string of closest distance to array
+    # Find the correct string value to assign to our saved array of predicted strings
     if closest_distance in range(0,24):
         predicted_label = "Iris-setosa"     
     elif closest_distance in range(25,49):
@@ -59,11 +57,12 @@ print("Christian Nelson")
 print("PROGRAMMING ASSIGNMENT #3\n")
 print("#, True, Predicted")
 
+# Run through all of our lables to print them to the screen
 for x in range(0,75):
+    print(fm2.format((x+1),training_class_lables_array[x],predicted_labels(x)))
     # Get number of correct lables
     if(testing_class_lables_array[x] == predicted_labels(x)):
         correct += 1
-    print(fm2.format((x+1),training_class_lables_array[x],predicted_labels(x)))
 
 # Get accuracy            
 accuracy = float(correct/75.0)
