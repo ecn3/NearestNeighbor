@@ -14,7 +14,6 @@ fm2 = "{},{},{}"
 correct = 0
 arr_positions = np.arange(75)
 
-
 # Load in iris-training-data.csv into 2 ndarrays we use usecols, and dtype to sepertate the correct data into sepertate arrays of one type
 training_attribute_array = np.loadtxt('iris-training-data.csv', dtype=float, delimiter=',',usecols=(0,1,2,3))
 training_class_lables_array = np.loadtxt('iris-training-data.csv', dtype=str, delimiter=',',usecols=(4))
@@ -34,8 +33,25 @@ def compute_distance(x,y):
     #print(x,distance)
     return distance
 
-# Vectorize over each distance
+# Function for finding the closest distance
+def get_closest_distances(x):
+    closest_distance = np.argmin(distances(arr_positions,x))
+    # Assign string of closest distance to array
+    if closest_distance in range(0,24):
+        predicted_label = "Iris-setosa"     
+    elif closest_distance in range(25,49):
+        predicted_label = "Iris-versicolor" 
+    elif closest_distance in range(50,74):
+        predicted_label = "Iris-virginica" 
+    return predicted_label
+
+# Vectorize over each distance pair
 distances = np.vectorize(compute_distance)
+
+# Vectorize to set each predicted label
+predicted_labels = np.vectorize(get_closest_distances)
+
+
 
 # Print Results to Screen
 print("DATA-51100-002, SUMMER 2020")
@@ -43,23 +59,11 @@ print("Christian Nelson")
 print("PROGRAMMING ASSIGNMENT #3\n")
 print("#, True, Predicted")
 
-# Print each of our pairs
-for x in range(0, 75):
-    # Get the closest distance index for each pair
-    closest_distance = np.argmin(distances(arr_positions,x))
-    # Print the results
-    if closest_distance in range(0,24):
-        print(fm2.format((x+1),training_class_lables_array[x],"Iris-setosa"))
-        if(testing_class_lables_array[x] == 'Iris-setosa'):
-            correct += 1
-    elif closest_distance in range(25,49):
-        print(fm2.format((x+1),training_class_lables_array[x],"Iris-versicolor"))
-        if(testing_class_lables_array[x] == 'Iris-versicolor'):
-            correct += 1
-    elif closest_distance in range(50,74):
-        print(fm2.format((x+1),training_class_lables_array[x],"Iris-virginica"))
-        if(testing_class_lables_array[x] == 'Iris-virginica'):
-            correct += 1
+for x in range(0,75):
+    # Get number of correct lables
+    if(testing_class_lables_array[x] == predicted_labels(x)):
+        correct += 1
+    print(fm2.format((x+1),training_class_lables_array[x],predicted_labels(x)))
 
 # Get accuracy            
 accuracy = float(correct/75.0)
